@@ -56,20 +56,55 @@
     </style>
 </head>
 <body class="bg-gray-100 font-inter">
-    <header class="bg-blue-900 text-white py-4">
-        <div class="container mx-auto px-4 flex justify-between items-center">
-            <h1 class="text-2xl font-bold">Garry Balala</h1>
-            <nav>
-                <ul class="flex space-x-6">
-                    <li><a href="#about" class="hover:text-yellow-300 transition duration-300">About</a></li>
-                    <li><a href="#work" class="hover:text-yellow-300 transition duration-300">Work</a></li>
-                    <li><a href="#skills" class="hover:text-yellow-300 transition duration-300">Skills</a></li>
-                    <li><a href="#certifications" class="hover:text-yellow-300 transition duration-300">Certifications</a></li>
-                    <li><a href="#contact" class="hover:text-yellow-300 transition duration-300">Contact</a></li>
+<header class="bg-blue-900 text-white py-4">
+    <div class="container mx-auto px-4 flex justify-between items-center">
+        <h1 class="text-2xl font-bold">Garry Balala</h1>
+
+        <nav class="hidden md:block">
+            <ul class="flex space-x-6">
+                <li><a href="#about" class="hover:text-yellow-300 transition duration-300">About</a></li>
+                <li><a href="#work" class="hover:text-yellow-300 transition duration-300">Work</a></li>
+                <li><a href="#skills" class="hover:text-yellow-300 transition duration-300">Skills</a></li>
+                <li><a href="#certifications" class="hover:text-yellow-300 transition duration-300">Certifications</a></li>
+                <li><a href="#contact" class="hover:text-yellow-300 transition duration-300">Contact</a></li>
+            </ul>
+        </nav>
+
+        <div class="md:hidden relative"> <button id="mobile-menu-button" class="focus:outline-none">
+                <svg class="w-6 h-6 fill-current text-white" viewBox="0 0 24 24">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M4 6H20V8H4V6ZM4 11H20V13H4V11ZM4 16H20V18H4V16Z" />
+                </svg>
+            </button>
+            <div id="mobile-menu" class="hidden absolute top-full right-0 bg-blue-900 shadow-md rounded-md w-48 py-2 mt-1 z-50"> <ul class="flex flex-col items-start">
+                    <li><a href="#about" class="block px-4 py-2 hover:bg-blue-800 transition duration-300">About</a></li>
+                    <li><a href="#work" class="block px-4 py-2 hover:bg-blue-800 transition duration-300">Work</a></li>
+                    <li><a href="#skills" class="block px-4 py-2 hover:bg-blue-800 transition duration-300">Skills</a></li>
+                    <li><a href="#certifications" class="block px-4 py-2 hover:bg-blue-800 transition duration-300">Certifications</a></li>
+                    <li><a href="#contact" class="block px-4 py-2 hover:bg-blue-800 transition duration-300">Contact</a></li>
                 </ul>
-            </nav>
+            </div>
         </div>
-    </header>
+    </div>
+</header>
+
+<script>
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Ensure mobile menu items are clickable when the menu is visible
+        const mobileMenuItems = mobileMenu.querySelectorAll('a');
+        mobileMenuItems.forEach(item => {
+            item.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden'); // Close menu on item click (optional but recommended)
+            });
+        });
+    }
+</script>
     <main>
         <section id="hero" class="bg-blue-100 text-gray-800 text-center py-20 px-4">
             <div class="container mx-auto">
