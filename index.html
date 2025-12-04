@@ -1,354 +1,432 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Garry Balala Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Garry Balala | Tech Portfolio</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
-        /* Custom CSS for animations and layout */
-        .fade-in {
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out;
+        /* Custom Tech Styling */
+        body {
+            background-color: #0f172a; /* Slate 900 */
+            color: #e2e8f0; /* Slate 200 */
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
         }
 
-        .fade-in.active {
-            opacity: 1;
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
         }
 
-        /* Example of a more complex animation */
-        @keyframes slideIn {
-            from {
-                transform: translateY(20px);
-                opacity: 0;
-            }
-
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
+        /* Animated Background Grid */
+        .bg-grid {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
         }
 
-        .slide-in {
-            animation: slideIn 0.5s ease-out;
+        /* Glassmorphism Card Style */
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
         }
 
-        .project-card {
-            background-color: white;
-            border-radius: 0.5rem;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            padding: 1.5rem;
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        .glass-card:hover {
+            border-color: #22d3ee; /* Cyan-400 */
+            box-shadow: 0 0 20px rgba(34, 211, 238, 0.2);
         }
 
-        .project-card:hover {
-            transform: translateY(-0.5rem);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        /* Gradient Text */
+        .text-gradient {
+            background: linear-gradient(to right, #22d3ee, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        .certification-card {
-            background-color: white;
-            border-radius: 0.5rem;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #475569;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #22d3ee;
         }
     </style>
 </head>
-<body class="bg-gray-100 font-inter">
-<header class="bg-blue-900 text-white py-4">
-    <div class="container mx-auto px-4 flex justify-between items-center">
-        <h1 class="text-2xl font-bold">Garry Balala</h1>
+<body class="bg-grid">
 
-        <nav class="hidden md:block">
-            <ul class="flex space-x-6">
-                <li><a href="#about" class="hover:text-yellow-300 transition duration-300">About</a></li>
-                <li><a href="#work" class="hover:text-yellow-300 transition duration-300">Work</a></li>
-                <li><a href="#skills" class="hover:text-yellow-300 transition duration-300">Skills</a></li>
-                <li><a href="#certifications" class="hover:text-yellow-300 transition duration-300">Certifications</a></li>
-                <li><a href="#contact" class="hover:text-yellow-300 transition duration-300">Contact</a></li>
-            </ul>
-        </nav>
+    <header class="fixed w-full top-0 z-50 glass-card border-b-0">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold font-mono text-cyan-400">&lt;Garry/&gt;</a>
 
-        <div class="md:hidden relative"> <button id="mobile-menu-button" class="focus:outline-none">
-                <svg class="w-6 h-6 fill-current text-white" viewBox="0 0 24 24">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M4 6H20V8H4V6ZM4 11H20V13H4V11ZM4 16H20V18H4V16Z" />
-                </svg>
-            </button>
-            <div id="mobile-menu" class="hidden absolute top-full right-0 bg-blue-900 shadow-md rounded-md w-48 py-2 mt-1 z-50"> <ul class="flex flex-col items-start">
-                    <li><a href="#about" class="block px-4 py-2 hover:bg-blue-800 transition duration-300">About</a></li>
-                    <li><a href="#work" class="block px-4 py-2 hover:bg-blue-800 transition duration-300">Work</a></li>
-                    <li><a href="#skills" class="block px-4 py-2 hover:bg-blue-800 transition duration-300">Skills</a></li>
-                    <li><a href="#certifications" class="block px-4 py-2 hover:bg-blue-800 transition duration-300">Certifications</a></li>
-                    <li><a href="#contact" class="block px-4 py-2 hover:bg-blue-800 transition duration-300">Contact</a></li>
+            <nav class="hidden md:block">
+                <ul class="flex space-x-8 font-mono text-sm">
+                    <li><a href="#about" class="hover:text-cyan-400 transition duration-300"><span class="text-cyan-600">01.</span> About</a></li>
+                    <li><a href="#work" class="hover:text-cyan-400 transition duration-300"><span class="text-cyan-600">02.</span> Work</a></li>
+                    <li><a href="#skills" class="hover:text-cyan-400 transition duration-300"><span class="text-cyan-600">03.</span> Skills</a></li>
+                    <li><a href="#certifications" class="hover:text-cyan-400 transition duration-300"><span class="text-cyan-600">04.</span> Certs</a></li>
+                    <li><a href="#contact" class="border border-cyan-400 px-4 py-2 rounded hover:bg-cyan-400 hover:text-slate-900 transition duration-300">Contact</a></li>
                 </ul>
-            </div>
+            </nav>
+
+            <button id="mobile-menu-button" class="md:hidden text-cyan-400 focus:outline-none">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
         </div>
-    </div>
-</header>
 
-<script>
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-800 absolute w-full border-t border-slate-700">
+            <ul class="flex flex-col p-4 space-y-4 font-mono text-center">
+                <li><a href="#about" class="block hover:text-cyan-400">About</a></li>
+                <li><a href="#work" class="block hover:text-cyan-400">Work</a></li>
+                <li><a href="#skills" class="block hover:text-cyan-400">Skills</a></li>
+                <li><a href="#certifications" class="block hover:text-cyan-400">Certifications</a></li>
+                <li><a href="#contact" class="block text-cyan-400">Contact</a></li>
+            </ul>
+        </div>
+    </header>
 
-    if (mobileMenuButton && mobileMenu) {
+    <main>
+        <section id="hero" class="min-h-screen flex items-center justify-center px-4 pt-20">
+            <div class="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <p class="text-cyan-400 font-mono mb-4">Hi, my name is</p>
+                    <h1 class="text-5xl md:text-7xl font-bold text-slate-100 mb-4">Garry Balala.</h1>
+                    <h2 class="text-3xl md:text-5xl font-bold text-slate-400 mb-6">I build <span id="typed-output" class="text-gradient"></span></h2>
+                    
+                    <p class="text-slate-400 text-lg max-w-lg mb-8 leading-relaxed">
+                        I'm a tech-driven professional specializing in Mobile App Development, AI Risk Management, and Blockchain Security. I turn complex data into strategic digital solutions.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-4">
+                        <a href="Garry Balala- Resume.pdf" download class="bg-cyan-500 text-slate-900 px-8 py-3 rounded font-bold hover:bg-cyan-400 transition duration-300 transform hover:-translate-y-1">
+                            <i class="fas fa-download mr-2"></i> Resume
+                        </a>
+                        <a href="#work" class="border border-cyan-400 text-cyan-400 px-8 py-3 rounded font-bold hover:bg-cyan-400/10 transition duration-300">
+                            View Work
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="hidden lg:block relative" data-aos="fade-left">
+                    <div class="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full blur-3xl opacity-20 animate-pulse"></div>
+                    <div class="glass-card p-6 rounded-lg font-mono text-sm relative z-10 border-l-4 border-cyan-500">
+                        <div class="flex gap-2 mb-4">
+                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                        </div>
+                        <p class="text-gray-400">// Garry's Profile</p>
+                        <p><span class="text-purple-400">const</span> <span class="text-yellow-300">professional</span> = {</p>
+                        <p class="pl-4">name: <span class="text-green-300">'Garry Balala'</span>,</p>
+                        <p class="pl-4">role: <span class="text-green-300">'Founder of InnoTech Systems'</span>,</p>
+                        <p class="pl-4">skills: [<span class="text-green-300">'AI'</span>, <span class="text-green-300">'Blockchain'</span>, <span class="text-green-300">'Data'</span>],</p>
+                        <p class="pl-4">hardWorker: <span class="text-orange-400">true</span></p>
+                        <p>};</p>
+                        <br>
+                        <p class="text-gray-400">// Ready to collaborate?</p>
+                        <p><span class="text-blue-300">professional</span>.<span class="text-yellow-300">contactMe</span>();</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="py-24 px-4">
+            <div class="container mx-auto">
+                <div class="flex items-center mb-12" data-aos="fade-up">
+                    <h2 class="text-3xl font-bold text-slate-100 mr-4"><span class="text-cyan-400 font-mono text-2xl">01.</span> About Me</h2>
+                    <div class="h-px bg-slate-700 flex-grow max-w-xs"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div data-aos="fade-up" data-aos-delay="100">
+                        <div class="space-y-4 text-slate-400 text-lg">
+                            <p>
+                                Hello! I am a motivated professional passionate about the intersection of <strong class="text-cyan-400">Technology and Strategy</strong>. My journey started with a curiosity about how systems work, which led me to found InnoTech Systems.
+                            </p>
+                            <p>
+                                I honed my skills through the <span class="text-slate-200">Aspire Leaders Program</span> and gained deep technical expertise as a <span class="text-slate-200">Webacy Blockchain Extern</span>.
+                            </p>
+                            <p>
+                                At <span class="text-slate-200">Expedia Group</span>, I didn't just look at data; I analyzed global advertising trends to drive corporate planning. Whether it's assessing AI risks or conducting census work on the ground in Malawi, I bring adaptability and precision to every project.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="relative group" data-aos="zoom-in">
+                        <div class="absolute inset-0 bg-cyan-400 rounded-lg transform translate-x-4 translate-y-4 transition-transform group-hover:translate-x-2 group-hover:translate-y-2"></div>
+                        <div class="relative z-10 rounded-lg overflow-hidden grayscale hover:grayscale-0 transition duration-500">
+                             <img src="placeholder-profile-image.jpg" alt="Garry Balala" class="w-full h-auto object-cover rounded-lg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="work" class="py-24 px-4 bg-slate-900/50">
+            <div class="container mx-auto">
+                <div class="flex items-center mb-12" data-aos="fade-up">
+                    <h2 class="text-3xl font-bold text-slate-100 mr-4"><span class="text-cyan-400 font-mono text-2xl">02.</span> Featured Work</h2>
+                    <div class="h-px bg-slate-700 flex-grow max-w-xs"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="glass-card rounded-lg p-6 relative" data-aos="fade-up" data-tilt>
+                        <div class="flex justify-between items-start mb-4">
+                            <i class="fas fa-folder text-4xl text-cyan-400"></i>
+                            <a href="#" class="text-slate-400 hover:text-cyan-400"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-100 mb-2">Expedia Group Strategy</h3>
+                        <p class="text-slate-400 text-sm mb-4">Analyzed digital advertising trends and identified retail media network opportunities to guide corporate planning.</p>
+                        <ul class="flex flex-wrap gap-2 text-xs font-mono text-slate-500 mt-auto">
+                            <li>Data Analysis</li>
+                            <li>Strategy</li>
+                            <li>Market Research</li>
+                        </ul>
+                        <a href="digital advertising.pdf" class="absolute inset-0"></a>
+                    </div>
+
+                    <div class="glass-card rounded-lg p-6 relative" data-aos="fade-up" data-aos-delay="100" data-tilt>
+                        <div class="flex justify-between items-start mb-4">
+                            <i class="fas fa-shield-alt text-4xl text-cyan-400"></i>
+                            <a href="#" class="text-slate-400 hover:text-cyan-400"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-100 mb-2">Webacy Blockchain</h3>
+                        <p class="text-slate-400 text-sm mb-4">Conducted security research on blockchain technology and analyzed Web3 vulnerabilities.</p>
+                        <ul class="flex flex-wrap gap-2 text-xs font-mono text-slate-500">
+                            <li>Web3</li>
+                            <li>Security</li>
+                            <li>Research</li>
+                        </ul>
+                        <a href="Garry Balala_Letter of Completion - Webacy.pdf" class="absolute inset-0"></a>
+                    </div>
+
+                    <div class="glass-card rounded-lg p-6 relative" data-aos="fade-up" data-aos-delay="200" data-tilt>
+                        <div class="flex justify-between items-start mb-4">
+                            <i class="fas fa-robot text-4xl text-cyan-400"></i>
+                            <a href="#" class="text-slate-400 hover:text-cyan-400"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-100 mb-2">AI Risk Landscape</h3>
+                        <p class="text-slate-400 text-sm mb-4">Identified and classified prevalent AI risks, providing actionable recommendations.</p>
+                        <ul class="flex flex-wrap gap-2 text-xs font-mono text-slate-500">
+                            <li>AI Ethics</li>
+                            <li>Risk Mgmt</li>
+                            <li>Analysis</li>
+                        </ul>
+                        <a href="Garry Balala_Letter of Completion - NRG.pdf" class="absolute inset-0"></a>
+                    </div>
+
+                     <div class="glass-card rounded-lg p-6 relative" data-aos="fade-up" data-aos-delay="300" data-tilt>
+                        <div class="flex justify-between items-start mb-4">
+                            <i class="fas fa-chart-bar text-4xl text-cyan-400"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-100 mb-2">National Census (NACA)</h3>
+                        <p class="text-slate-400 text-sm mb-4">Conducted household listing and data collection across various demographics.</p>
+                        <ul class="flex flex-wrap gap-2 text-xs font-mono text-slate-500">
+                            <li>Data Collection</li>
+                            <li>Field Work</li>
+                        </ul>
+                    </div>
+
+                    <div class="glass-card rounded-lg p-6 relative" data-aos="fade-up" data-aos-delay="400" data-tilt>
+                        <div class="flex justify-between items-start mb-4">
+                            <i class="fas fa-city text-4xl text-cyan-400"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-100 mb-2">Urban Cash Intervention</h3>
+                        <p class="text-slate-400 text-sm mb-4">COVID-19 response enumeration and data gathering in urban settings.</p>
+                        <ul class="flex flex-wrap gap-2 text-xs font-mono text-slate-500">
+                            <li>Enumeration</li>
+                            <li>Communication</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="py-24 px-4">
+            <div class="container mx-auto">
+                <div class="flex items-center mb-12" data-aos="fade-up">
+                    <h2 class="text-3xl font-bold text-slate-100 mr-4"><span class="text-cyan-400 font-mono text-2xl">03.</span> Tech Stack & Skills</h2>
+                    <div class="h-px bg-slate-700 flex-grow max-w-xs"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <div data-aos="fade-right">
+                        <h3 class="text-xl font-mono text-cyan-400 mb-6 flex items-center">
+                            <i class="fas fa-terminal mr-3"></i> Technical
+                        </h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="px-4 py-2 bg-slate-800 rounded text-cyan-300 font-mono text-sm border border-slate-700 hover:border-cyan-400 transition cursor-default">Blockchain</span>
+                            <span class="px-4 py-2 bg-slate-800 rounded text-cyan-300 font-mono text-sm border border-slate-700 hover:border-cyan-400 transition cursor-default">Web3 Security</span>
+                            <span class="px-4 py-2 bg-slate-800 rounded text-cyan-300 font-mono text-sm border border-slate-700 hover:border-cyan-400 transition cursor-default">Data Analysis</span>
+                            <span class="px-4 py-2 bg-slate-800 rounded text-cyan-300 font-mono text-sm border border-slate-700 hover:border-cyan-400 transition cursor-default">Web Development</span>
+                            <span class="px-4 py-2 bg-slate-800 rounded text-cyan-300 font-mono text-sm border border-slate-700 hover:border-cyan-400 transition cursor-default">Machine Learning</span>
+                            <span class="px-4 py-2 bg-slate-800 rounded text-cyan-300 font-mono text-sm border border-slate-700 hover:border-cyan-400 transition cursor-default">Strategic Planning</span>
+                            <span class="px-4 py-2 bg-slate-800 rounded text-cyan-300 font-mono text-sm border border-slate-700 hover:border-cyan-400 transition cursor-default">Server Admin</span>
+                        </div>
+                    </div>
+
+                    <div data-aos="fade-left">
+                        <h3 class="text-xl font-mono text-cyan-400 mb-6 flex items-center">
+                            <i class="fas fa-users mr-3"></i> Leadership & Soft
+                        </h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="px-4 py-2 bg-slate-800 rounded text-slate-300 font-mono text-sm border border-slate-700 hover:border-slate-400 transition cursor-default">Leadership</span>
+                            <span class="px-4 py-2 bg-slate-800 rounded text-slate-300 font-mono text-sm border border-slate-700 hover:border-slate-400 transition cursor-default">Problem Solving</span>
+                            <span class="px-4 py-2 bg-slate-800 rounded text-slate-300 font-mono text-sm border border-slate-700 hover:border-slate-400 transition cursor-default">Critical Thinking</span>
+                            <span class="px-4 py-2 bg-slate-800 rounded text-slate-300 font-mono text-sm border border-slate-700 hover:border-slate-400 transition cursor-default">Communication</span>
+                            <span class="px-4 py-2 bg-slate-800 rounded text-slate-300 font-mono text-sm border border-slate-700 hover:border-slate-400 transition cursor-default">Change Management</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="certifications" class="py-24 px-4 bg-slate-900/50">
+            <div class="container mx-auto">
+                <div class="flex items-center mb-12" data-aos="fade-up">
+                    <h2 class="text-3xl font-bold text-slate-100 mr-4"><span class="text-cyan-400 font-mono text-2xl">04.</span> Certifications</h2>
+                    <div class="h-px bg-slate-700 flex-grow max-w-xs"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="glass-card p-6 rounded hover:-translate-y-2 transition duration-300" data-aos="flip-up">
+                        <h3 class="text-cyan-400 font-bold mb-1">Google AI Essentials</h3>
+                        <p class="text-xs text-slate-500 mb-4 font-mono">Issued Mar 2025</p>
+                        <ul class="text-sm text-slate-400 list-disc list-inside mb-4">
+                            <li>Generative AI</li>
+                            <li>Prompt Design</li>
+                        </ul>
+                        <a href="Google AI essentials.pdf" class="text-xs text-cyan-400 border-b border-cyan-400 pb-0.5 hover:text-white hover:border-white transition">View Credential</a>
+                    </div>
+                    
+                    <div class="glass-card p-6 rounded hover:-translate-y-2 transition duration-300" data-aos="flip-up" data-aos-delay="100">
+                        <h3 class="text-cyan-400 font-bold mb-1">Cybersecurity Fdn.</h3>
+                        <p class="text-xs text-slate-500 mb-4 font-mono">Issued June 2024</p>
+                        <ul class="text-sm text-slate-400 list-disc list-inside mb-4">
+                            <li>NIST Framework</li>
+                            <li>INFOSEC</li>
+                        </ul>
+                        <a href="F cyber.pdf" class="text-xs text-cyan-400 border-b border-cyan-400 pb-0.5 hover:text-white hover:border-white transition">View Credential</a>
+                    </div>
+
+                    <div class="glass-card p-6 rounded hover:-translate-y-2 transition duration-300" data-aos="flip-up" data-aos-delay="200">
+                        <h3 class="text-cyan-400 font-bold mb-1">Project Mgmt Fdn.</h3>
+                        <p class="text-xs text-slate-500 mb-4 font-mono">Issued Jan 2025</p>
+                        <ul class="text-sm text-slate-400 list-disc list-inside mb-4">
+                            <li>Strategic Thinking</li>
+                            <li>Change Mgmt</li>
+                        </ul>
+                        <a href="#" class="text-xs text-cyan-400 border-b border-cyan-400 pb-0.5 hover:text-white hover:border-white transition">View Credential</a>
+                    </div>
+
+                    <div class="glass-card p-6 rounded hover:-translate-y-2 transition duration-300" data-aos="flip-up" data-aos-delay="300">
+                        <h3 class="text-cyan-400 font-bold mb-1">Security Risks</h3>
+                        <p class="text-xs text-slate-500 mb-4 font-mono">Issued Jan 2025</p>
+                        <ul class="text-sm text-slate-400 list-disc list-inside mb-4">
+                            <li>Incident Response</li>
+                            <li>Security Audits</li>
+                        </ul>
+                        <a href="play safe.pdf" class="text-xs text-cyan-400 border-b border-cyan-400 pb-0.5 hover:text-white hover:border-white transition">View Credential</a>
+                    </div>
+                    
+                    <div class="glass-card p-6 rounded hover:-translate-y-2 transition duration-300" data-aos="flip-up" data-aos-delay="400">
+                        <h3 class="text-cyan-400 font-bold mb-1">Bits and Bytes</h3>
+                        <p class="text-xs text-slate-500 mb-4 font-mono">Issued Jan 2025</p>
+                        <ul class="text-sm text-slate-400 list-disc list-inside mb-4">
+                            <li>Networking</li>
+                            <li>DNS Systems</li>
+                        </ul>
+                        <a href="bits and bytes.pdf" class="text-xs text-cyan-400 border-b border-cyan-400 pb-0.5 hover:text-white hover:border-white transition">View Credential</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-24 px-4 text-center">
+            <div class="container mx-auto max-w-2xl" data-aos="zoom-in">
+                <p class="text-cyan-400 font-mono mb-4">05. What's Next?</p>
+                <h2 class="text-4xl md:text-5xl font-bold text-slate-100 mb-6">Get In Touch</h2>
+                <p class="text-slate-400 text-lg mb-10">
+                    Whether you have a question about my research, need mobile app development, or just want to say hi, my inbox is always open.
+                </p>
+                
+                <div class="flex flex-col md:flex-row justify-center gap-6">
+                    <a href="mailto:balalagarry@gmail.com" class="border border-cyan-400 text-cyan-400 px-8 py-4 rounded font-mono hover:bg-cyan-400/10 transition duration-300">
+                        Say Hello
+                    </a>
+                    <a href="https://www.linkedin.com/in/balalagarry" target="_blank" class="bg-cyan-600 text-white px-8 py-4 rounded font-mono hover:bg-cyan-700 transition duration-300">
+                        LinkedIn
+                    </a>
+                </div>
+                
+                <div class="mt-12 text-slate-500 font-mono text-sm">
+                    <p>Phone: +265 884 629 056</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-slate-900 text-center py-6 border-t border-slate-800">
+        <p class="text-slate-500 font-mono text-xs hover:text-cyan-400 transition cursor-pointer">
+            Built by Garry Balala &copy; 2025
+        </p>
+    </footer>
+
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+    
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Initialize Typed.js
+        var typed = new Typed('#typed-output', {
+            strings: ['Mobile Apps.', 'Secure Blockchains.', 'AI Risk Strategies.', 'InnoTech Systems.'],
+            typeSpeed: 50,
+            backSpeed: 30,
+            backDelay: 2000,
+            loop: true
+        });
+
+        // Mobile Menu Logic
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
         mobileMenuButton.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
 
-        // Ensure mobile menu items are clickable when the menu is visible
-        const mobileMenuItems = mobileMenu.querySelectorAll('a');
-        mobileMenuItems.forEach(item => {
-            item.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden'); // Close menu on item click (optional but recommended)
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
             });
         });
-    }
-</script>
-    <main>
-        <section id="hero" class="bg-blue-100 text-gray-800 text-center py-20 px-4">
-            <div class="container mx-auto">
-                <h2 class="text-4xl font-bold mb-4 fade-in">Garry Balala</h2>
-                <p class="text-xl mb-8 fade-in">Founder of InnoTech Systems|Mobile App developer|AI Risk Management & Market Researcher | Competitive Intelligence & Digital Advertising Extern | Blockchain & Web3 Security Researcher | ALP '24 Alumni |BIT Student | Web Developer</p>
-                <a href="Garry Balala- Resume.pdf" download 
-                class="bg-yellow-500 text-blue-900 py-3 px-6 rounded-full hover:bg-yellow-600 transition duration-300 font-semibold fade-in">
-                Download My Resume
-                </a><br>
-               
-                <br><a href="#work"
-                    class="bg-yellow-500 text-blue-900 py-3 px-6 rounded-full hover:bg-yellow-600 transition duration-300 font-semibold fade-in">View
-                    My Work</a>
-            </div>
-        </section>
-        <section id="about" class="container mx-auto py-16 px-4">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <div class="md:text-right">
-                    <img src="placeholder-profile-image.jpg" alt="Garry Balala" class="rounded-lg shadow-lg fade-in">
-                </div>
-                <div>
-                    <h2 class="text-3xl font-semibold mb-4 text-blue-900 fade-in">About Me</h2>
-                    <p class="text-gray-700 mb-6 fade-in">
-                        I am a motivated professional passionate about learning and growth, with leadership and 
-                        strategic skills honed through the Aspire Leaders Program.
-                    </p>
-                    <p class="text-gray-700 mb-6 fade-in">
-                        I developed expertise in blockchain 
-                        technology through the Webacy Blockchain Technology and Web3 Research Externship. In my 
-                        role at Expedia Group, I analysed global digital advertising trends, researched retail media 
-                        networks and identified strategic opportunities. I also developed insights presentations to guide 
-                        corporate planning and managed multiple projects autonomously. My AI Risk Landscape 
-                        Market Research Externship further strengthened my analytical skills by identifying, classifying, 
-                        and providing actionable recommendations on AI risks. Additionally, hands on experience as a 
-                        temporary enumerator in both rural and urban settings enhanced my adaptability and 
-                        communication skills.
-                    </p>
-                    <a href="https://www.linkedin.com/in/balalagarry" target="_blank" rel="noopener noreferrer"
-                        class="text-blue-600 hover:text-blue-800 transition duration-300 font-semibold fade-in">
-                        Connect with me on LinkedIn
-                    </a>
-                </div>
-            </div>
-        </section>
-        <section id="work" class="bg-blue-100 py-16 px-4">
-            <div class="container mx-auto">
-                <h2 class="text-3xl font-semibold mb-8 text-blue-900 text-center fade-in">Featured Work</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="project-card fade-in">
-                        <h3 class="text-xl font-semibold mb-2 text-blue-800">National Census for Agriculture (NACA)</h3>
-                        <p class="text-gray-700 mb-4">Enumerator</p>
-                        <p class="text-gray-600">Conducted household listing and data collection...</p>
-                        
-                    </div>
-                    <div class="project-card fade-in">
-                        <h3 class="text-xl font-semibold mb-2 text-blue-800">Expedia Group</h3>
-                        <p class="text-gray-700 mb-4">Competitive Intelligence and Strategy Externship</p>
-                        <p class="text-gray-600">Analyzed digital advertising trends...</p>
-                        <a href="digital advertising.pdf" class="text-blue-600 hover:text-blue-800 transition duration-300 font-semibold mt-2">View Letter of Completion</a>
-                    </div>
-                    <div class="project-card fade-in">
-                        <h3 class="text-xl font-semibold mb-2 text-blue-800">AI Risk Landscape</h3>
-                        <p class="text-gray-700 mb-4">Market Research Externship</p>
-                        <p class="text-gray-600">Identified and analyzed prevalent AI risks...</p>
-                        <a href="Garry Balala_Letter of Completion - NRG.pdf" class="text-blue-600 hover:text-blue-800 transition duration-300 font-semibold mt-2">View Letter of Completion</a>
-                    </div>
-                    
-                    <div class="project-card fade-in">
-                        <h3 class="text-xl font-semibold mb-2 text-blue-800">Webacy Blockchain</h3>
-                        <p class="text-gray-700 mb-4">Security Research Extern</p>
-                        <p class="text-gray-600">Conducted blockchain technology analysis...</p>
-                        <a href="Garry Balala_Letter of Completion - Webacy.pdf" class="text-blue-600 hover:text-blue-800 transition duration-300 font-semibold mt-2">View Letter of Completion</a>
-                    </div>
-                    <div class="project-card fade-in">
-                        <h3 class="text-xl font-semibold mb-2 text-blue-800">Unified Beneficiary Registry (UBR)</h3>
-                        <p class="text-gray-700 mb-4">Enumerator</p>
-                        <p class="text-gray-600">Conducted household interviews...</p>
-                    </div>
-                    <div class="project-card fade-in">
-                        <h3 class="text-xl font-semibold mb-2 text-blue-800">Malawi COVID-19 Urban Cash Intervention (CUCI)</h3>
-                        <p class="text-gray-700 mb-4">Enumerator</p>
-                        <p class="text-gray-600">Conducted household interviews in urban settings...</p>
-                    </div>
-                    <div class="project-card fade-in">
-                         <h3 class="text-xl font-semibold mb-2 text-blue-800">National Statistical Office of Malawi</h3>
-                        <p class="text-gray-700 mb-4">Enumerator</p>
-                        <p class="text-gray-600">Located all structures and households...</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-        <section id="skills" class="container mx-auto py-16 px-4">
-            <h2 class="text-3xl font-semibold mb-8 text-blue-900 text-center fade-in">Skills</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div>
-                    <h4 class="font-semibold mb-2 text-blue-800 fade-in">Technical Skills</h4>
-                    <ul class="list-disc list-inside space-y-2 text-gray-700">
-                        <li class="fade-in">Data Analysis</li>
-                        <li class="fade-in">Blockchain Technology</li>
-                        <li class="fade-in">Web3 Security</li>
-                        <li class="fade-in">Market Research</li>
-                        <li class="fade-in">Competitive Intelligence</li>
-                        <li class="fade-in">Strategic Planning</li>
-                        <li class="fade-in">Web Development</li>
-                        <li class="fade-in">Machine Learning</li>
-                        <li class="fade-in">Server Administration</li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-2 text-blue-800 fade-in">Soft Skills</h4>
-                    <ul class="list-disc list-inside space-y-2 text-gray-700">
-                        <li class="fade-in">Coordination</li>
-                        <li class="fade-in">Problem Solving</li>
-                        <li class="fade-in">Critical Thinking</li>
-                        <li class="fade-in">Collaboration</li>
-                        <li class="fade-in">Leadership</li>
-                        <li class="fade-in">Communication</li>
-                        <li class="fade-in">Time Management</li>
-                        <li class="fade-in">Service Orientation</li>
-                        <li class="fade-in">Flexibility</li>
-                         <li class="fade-in">Strategic Thinking</li>
-                        <li class="fade-in">Change Management</li>
-                        <li class="fade-in">Networking</li>
-                        <li class="fade-in">Interviewing</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <section id="certifications" class="container mx-auto py-16 px-4">
-            <h2 class="text-3xl font-semibold mb-8 text-blue-900 text-center fade-in">Certifications</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="certification-card fade-in">
-                    <h3 class="font-semibold text-blue-900">Google AI Essentials</h3>
-                    <p class="text-gray-600">Issued: Mar 2025</p>
-                    <ul class="list-disc list-inside text-gray-700">
-                        <li>Prompt Design</li>
-                        <li>Generative AI</li>
-                        <li>Artificial Intelligence (AI)</li>
-                    </ul>
-                    <a href="Google AI essentials.pdf" class="text-blue-600 hover:text-blue-800 transition duration-300 font-semibold mt-2">View Certificate</a>
-                </div>
-                <div class="certification-card fade-in">
-                    <h3 class="font-semibold text-blue-900">Foundation of Project Management</h3>
-                    <p class="text-gray-600">Issued: Jan 2025</p>
-                    <ul class="list-disc list-inside text-gray-700">
-                        <li>Project Management</li>
-                        <li>Change Management</li>
-                        <li>Strategic Thinking</li>
-                        <li>Career Development</li>
-                        <li>Organizations Culture</li>
-                    </ul>
-                    <a href="#" class="text-blue-600 hover:text-blue-800 transition duration-300 font-semibold mt-2">View Certificate</a>
-                </div>
-                <div class="certification-card fade-in">
-                    <h3 class="font-semibold text-blue-900">Play it Safe: Manage Security Risks</h3>
-                    <p class="text-gray-600">Issued: Jan 2025</p>
-                    <ul class="list-disc list-inside text-gray-700">
-                        <li>Incident Response Playbook</li>
-                        <li>NIST Security Framework (CSF)</li>
-                        <li>NIST Risk Management Framework (RMF)</li>
-                        <li>Security Audits</li>
-                        <li>Information Security (INFOSEC)</li>
-                    </ul>
-                    <a href="play safe.pdf" class="text-blue-600 hover:text-blue-800 transition duration-300 font-semibold mt-2">View Certificate</a>
-                </div>
-                <div class="certification-card fade-in">
-                    <h3 class="font-semibold text-blue-900">Technical Support Fundamentals</h3>
-                    <p class="text-gray-600">Issued: Jan 2025</p>
-                    <ul class="list-disc list-inside text-gray-700">
-                        <li>Troubleshooting</li>
-                        <li>Customer Support</li>
-                    </ul>
-                    <a href="techncal suppo.pdf" class="text-blue-600 hover:text-blue-800 transition duration-300 font-semibold mt-2">View Certificate</a>
-                </div>
-                <div class="certification-card fade-in">
-                    <h3 class="font-semibold text-blue-900">The Bits and Bytes of Computer Networking</h3>
-                    <p class="text-gray-600">Issued: Jan 2025</p>
-                    <ul class="list-disc list-inside text-gray-700">
-                        <li>Troubleshooting</li>
-                        <li>Network Models</li>
-                        <li>Domain Name Systems (DNS)</li>
-                    </ul>
-                    <a href="bits and bytes.pdf" class="text-blue-600 hover:text-blue-800 transition duration-300 font-semibold mt-2">View Certificate</a>
-                </div>
-                <div class="certification-card fade-in">
-                    <h3 class="font-semibold text-blue-900">Foundation of Cybersecurity</h3>
-                    <p class="text-gray-600">Issued: June 2024</p>
-                    <ul class="list-disc list-inside text-gray-700">
-                        <li>Information Security</li>
-                        <li>Cybersecurity</li>
-                        <li>Historical Attacks</li>
-                        <li>Ethics in Cybersecurity</li>
-                        <li>NIST Cybersecurity Frameworks</li>
-                    </ul>
-                    <a href="F cyber.pdf" class="text-blue-600 hover:text-blue-800 transition duration-300 font-semibold mt-2">View Certificate</a>
-                </div>
-                <div class="certification-card fade-in">
-                    <h3 class="font-semibold text-blue-900">Artificial Intelligence for All</h3>
-                    <p class="text-gray-600">Issued: Mar 2024</p>
-                    <ul class="list-disc list-inside text-gray-700">
-                        <li>AI Training</li>
-                    </ul>
-                    <a href="ai.pdf" class="text-blue-600 hover:text-blue-800 transition duration-300 font-semibold mt-2">View Certificate</a>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="bg-blue-100 py-16 px-4">
-            <div class="container mx-auto text-center">
-                <h2 class="text-3xl font-semibold mb-8 text-blue-900 fade-in">Contact Me</h2>
-                <p class="text-gray-700 mb-4 fade-in">Email:<a href="mailto:balalagarry@gmail.com"class="text-blue-600 hover:text-blue-800 transition duration-300 font-semibold mt-2">balalagarry@gmail.com</a></p>
-                <p class="text-gray-700 mb-6 fade-in">
-                  Phone: <a href="tel:+265884629056">+265 884 629 056</a>
-                </p>
-
-                <a href="https://www.linkedin.com/in/balalagarry" target="_blank" rel="noopener noreferrer"
-                    class="text-blue-600 hover:text-blue-800 transition duration-300 font-semibold fade-in">
-                    Connect with me on LinkedIn
-                </a>
-            </div>
-        </section>
-    </main>
-    <footer class="bg-gray-800 text-white py-4">
-        <div class="container mx-auto text-center">
-            <p>&copy; 2025 Garry Balala. All rights reserved.</p>
-        </div>
-    </footer>
-    <script>
-        // Add JavaScript to handle animations on scroll
-        const elements = document.querySelectorAll('.fade-in');
-
-        function checkVisibility() {
-            elements.forEach(element => {
-                if (element.getBoundingClientRect().top < window.innerHeight * 0.8) {
-                    element.classList.add('active');
-                }
-            });
-        }
-
-        window.addEventListener('scroll', checkVisibility);
-        checkVisibility(); // Ensure elements are checked on initial load
+        
+        // Tilt Effect is automatically handled by the library looking for data-tilt
     </script>
 </body>
 </html>
